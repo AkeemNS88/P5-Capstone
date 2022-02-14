@@ -5,21 +5,25 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   # Routing logic: fallback requests for React Router.
 
-  get '/me', to: "user#show"
+  get '/me', to: "users#show"
 
-  patch '/edit', to: "post#update"
+  get '/entries', to: "categories#show"
 
-  patch '/update', to: "user#update"
+  patch '/edit', to: "posts#update"
 
-  post '/create', to: "post#create"
+  patch '/update', to: "users#update"
+
+  post '/create', to: "posts#create"
+
+  post '/signup', to: "users#create"
 
   post '/login', to: "sessions#login"
 
   delete '/logout', to: "sessions#destroy"
 
-  delete '/delete', to: "user#destroy"
+  delete '/delete', to: "users#destroy"
 
-  delete '/remove', to: "post#destroy"
+  delete '/remove', to: "posts#destroy"
 
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

@@ -14,5 +14,21 @@
     "bootstrap": "^5.1.3",
     "react-bootstrap": "^2.1.2",
     "react-router-dom": "^6.2.1"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkeemNS88/P5-Capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkeemNS88/P5-Capstone/issues"
+  },
+  "homepage": "https://github.com/AkeemNS88/P5-Capstone#readme"
 }

@@ -1,27 +1,26 @@
 class PostsController < ApplicationController
-     
+    before_action :find_post, only: [:show, :update, :destroy]
+    before_action :is_authorized, only: [:update, :destroy]
     def index
         render json: Post.all
     end
 
     def show
-        post = find_post
         render json: post, include: ['title', 'content']
     end
 
     def create
-        post = Post.create!(post_params)
+        @post = Post.create!(post_params)
         render json: post, status: :created
     end
 
     def update
-        post = find_post
-        post.update!(post_params)
+        @post.update!(post_params)
         render json: post
     end
 
     def destroy
-        post.destroy
+        @post.destroy
         head :no_content
     end
 
@@ -31,11 +30,16 @@ class PostsController < ApplicationController
         params.permit(:title, :content)
     end
 
+    def is_authorized
+        permitted = current_user.admin? || @post.user_id == current_user
+        render json: {error: "Accessibility is not permitted"}, status: :forbidden unless permitted
+    end
+
     def record_not_found
         render json: {error: "Post not found"}, status: 404
     end
 
     def find_post
-        Post.find(params[:id])
+        @post = Post.find_by_id(params[:id])
     end
 end

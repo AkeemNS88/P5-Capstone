@@ -1,8 +1,12 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Welcome from './Components/Welcome';
+import React from 'react';
+import { BrowserRouter as Router} from 'react-router-dom';
 import Header from './Components/Header';
+import LoggedIn from './Components/LoggedIn';
+import LoggedOut from './Components/LoggedOut';
+
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -24,15 +28,24 @@ function App() {
       }
     });
   }, []);
+
+  if (!authenticated) {
+    return <div></div>
+  }
   return (
+    <div>
+    <Header />
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Welcome currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-        <Route path="/account" element={<Account currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-        <Route path="/login" element={<LoginForm currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-      </Routes>
+    {currentUser ? (
+          <LoggedIn
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+          />
+        ) : (
+          <LoggedOut setCurrentUser={setCurrentUser} />
+        )}
     </Router>
+    </div>
   );
 }
 

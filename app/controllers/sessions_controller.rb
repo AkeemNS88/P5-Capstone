@@ -3,18 +3,15 @@ class SessionsController < ApplicationController
 
     def login
         user = User.find_by_username(params[:username])
-
         if user.authenticate(params[:password])
-
-            session[:user_id] = user.id
+            session[:user_id] = user.id   
             render json: user, status: :ok
-        else
+        else 
             render json: {error: "Auth creds not valid"}, status: :unauthorized
         end
     end
-
-    def destroy
-        reset_session
-        @current_user = nil
+    
+    def logout 
+        session.delete :user_id
     end
 end

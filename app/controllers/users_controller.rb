@@ -19,13 +19,11 @@ class UsersController < ApplicationController
         if current_user
             current_user.update!(user_params)
             render json: current_user, status: :ok
-        else
-            render json: "Not authenticated", status: :unauthorized
         end
     end
     
     def create
-        user = User.create(user_params)
+        user = User.create!(user_params)
             if user.valid?
                 session[:user_id] = user.id
                 render json: user, status: :created
