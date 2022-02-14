@@ -13,13 +13,13 @@ Rails.application.routes.draw do
 
   patch '/update', to: "users#update"
 
-  post '/create', to: "posts#create"
+  # post '/create', to: "posts#create"
 
   post '/signup', to: "users#create"
 
   post '/login', to: "sessions#login"
 
-  delete '/logout', to: "sessions#destroy"
+  delete '/logout', to: "sessions#logout"
 
   delete '/delete', to: "users#destroy"
 

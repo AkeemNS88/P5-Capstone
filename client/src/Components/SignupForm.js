@@ -40,8 +40,8 @@ const SignupForm = () => {
           email: ""
         });
       });
+      navigate("/home")
     }
-    navigate("/home")
 
 
 

@@ -1,23 +1,30 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Card, Button, Form, Row, Col } from 'react-bootstrap';
 
 function Account({ currentUser, setCurrentUser }) {
 
-    const [userData, setUserData] = useState({});
+    // const [userData, setUserData] = useState({});
     const [formData, setFormData] = useState({
         username: "",
         email: "",
     });
     
-    useEffect(() => {
-        fetch ("/me")
-            .then(res => res.json())
-            .then(data => setUserData(data))
-        }, [])
+    // useEffect(() => {
+    //     fetch ("/me")
+    //         .then(res => res.json())
+    //         .then(data => setUserData(data))
+    //     }, [])
         
-        let posts = userData.posts
+        
+        const renderTitles = currentUser.posts.map((post =>
+            <div>
+                <h3>{post.title}</h3>
+                <p>{post.content}</p>           
+            </div>
+            ))
+        
 
         function handleChange(e){
             setFormData({
@@ -75,8 +82,8 @@ function Account({ currentUser, setCurrentUser }) {
                         <Card.Body>
                             <Card.Title>
                                 <div>
-                                    <h3>Username: {userData.username}</h3>
-                                    <h3>Email: {userData.email}</h3>
+                                    <h3>Username: {currentUser.username}</h3>
+                                    <h3>Email: {currentUser.email}</h3>
                                 </div>
                             </Card.Title>
                                 <Form onSubmit={handleSubmit}>
@@ -148,7 +155,7 @@ function Account({ currentUser, setCurrentUser }) {
                             <Card.Title>
                                 Post History
                             </Card.Title>
-                            {posts}
+                            {renderTitles}
                         </Card.Body>
                     </Card>        
                     </div>

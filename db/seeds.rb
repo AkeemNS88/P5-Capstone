@@ -1,6 +1,6 @@
 puts "seeding user data"
 
-akeem = User.create(username: "Docfrost", password_digest: "Willtherebevictory?!", email: "AkeemS11788@gmail.com", admin: true)
+akeem = User.create(username: "Docfrost", password: "Willtherebevictory?!", email: "AkeemS11788@gmail.com", admin: true)
 
 puts "seeding category data"
 

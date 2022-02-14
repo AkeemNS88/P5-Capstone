@@ -80,7 +80,8 @@ const LoginForm = ({setCurrentUser}) => {
       </Form.Group>
         </Col>
       </Row>
-      <Button 
+      <Button
+        onClick={handleSubmit}
         type="submit"
         className="mt-2"
         variant="success"

@@ -10,24 +10,26 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.create!(post_params)
+        # post = Post.create!(post_params)
+        post = current_user.posts.build(post_params)
+        post.save!
         render json: post, status: :created
     end
 
     def update
-        @post.update!(post_params)
+        post.update!(post_params)
         render json: post
     end
 
     def destroy
-        @post.destroy
+        post.destroy
         head :no_content
     end
 
     private
 
     def post_params
-        params.permit(:title, :content)
+        params.require(:post).permit(:title, :content, :category_id)
     end
 
     def is_authorized
@@ -40,6 +42,6 @@ class PostsController < ApplicationController
     end
 
     def find_post
-        @post = Post.find_by_id(params[:id])
+        post = Post.find_by_id(params[:id])
     end
 end
