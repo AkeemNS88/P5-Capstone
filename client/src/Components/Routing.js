@@ -17,34 +17,18 @@ import AccountPostViewer from './AccountPostViewer'
 
 function Routing({ currentUser, setCurrentUser }) {
     const [posts, setPosts] = useState([])
-    const [displayPost, setDisplayPost] = useState({})
-    const [editToggle, setEditToggle] = useState(false)
     const [search, setSearch] = useState("")
     const [allPosts, setAllPosts] = useState([])
 
-    function handleUpdatePost(updatePost) {
-        let filteredPosts = posts.map(post => {
-            if (post.id === updatePost.id) {
-                return updatePost
-            }
-            return post
-        })
-        setPosts(filteredPosts)
-    }
-
-    const addDisplayPost = (post) => {
-        setDisplayPost(post)
-    }
+    
     const searchPost = posts.filter(post => (post.title.toLowerCase().includes(search.toLowerCase()) || 
     (post.content.toLowerCase().includes(search.toLocaleLowerCase()))))
 
-    const addNewPost = (newPost) => {
-        setPosts([...posts, newPost])
-    }
+    // const addNewPost = (newPost) => {
+    //     setPosts([...posts, newPost])
+    // }
     
-    const handleEditToggle = (boolean) => {
-        setEditToggle(boolean)
-    }
+    
 
     useEffect(() => {
         fetch('/posts')
@@ -62,16 +46,10 @@ function Routing({ currentUser, setCurrentUser }) {
         <Route path="/new" element={<New currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
         <Route path="/buying/:id" element={<BuyPostViewer posts={posts}/>}/>
         <Route path="/buying" element={<Buying
-                                            addNewPost={addNewPost}
                                             currentUser={currentUser}
                                             setCurrentUser={setCurrentUser}
                                             posts={posts} 
                                             setPosts={setPosts}
-                                            displayPosts={displayPost}
-                                            handleUpdatePost={handleUpdatePost}
-                                            setDisplayPost={setDisplayPost}
-                                            editToggle={editToggle}
-                                            handleEditToggle={handleEditToggle}
                                             />} />
         <Route path="/selling/:id" element={<SellPostViewer posts={posts}/>}/>
         <Route path="/selling" element={<Selling
@@ -79,11 +57,6 @@ function Routing({ currentUser, setCurrentUser }) {
                                             setCurrentUser={setCurrentUser}
                                             posts={posts} 
                                             setPosts={setPosts}
-                                            displayPosts={displayPost}
-                                            handleUpdatePost={handleUpdatePost}
-                                            setDisplayPost={setDisplayPost}
-                                            editToggle={editToggle}
-                                            handleEditToggle={handleEditToggle}
                                             />} />
         <Route path="/offering/:id" element={<OfferPostViewer posts={posts}/>}/>
         <Route path="/requesting" element={<Requesting 
@@ -91,11 +64,6 @@ function Routing({ currentUser, setCurrentUser }) {
                                             setCurrentUser={setCurrentUser}
                                             posts={posts} 
                                             setPosts={setPosts}
-                                            displayPosts={displayPost}
-                                            handleUpdatePost={handleUpdatePost}
-                                            setDisplayPost={setDisplayPost}
-                                            editToggle={editToggle}
-                                            handleEditToggle={handleEditToggle}
                                             />} />
         <Route path="/requesting/:id" element={<RequestPostViewer posts={posts}/>}/>
         <Route path="/offering" element={<Offering 
@@ -103,11 +71,6 @@ function Routing({ currentUser, setCurrentUser }) {
                                             setCurrentUser={setCurrentUser}
                                             posts={posts} 
                                             setPosts={setPosts}
-                                            displayPosts={displayPost}
-                                            handleUpdatePost={handleUpdatePost}
-                                            setDisplayPost={setDisplayPost}
-                                            editToggle={editToggle}
-                                            handleEditToggle={handleEditToggle}
                                             />} />
     </Routes>
     )

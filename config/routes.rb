@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   patch '/update', to: "users#update"
 
-  # post '/create', to: "posts#create"
+  post '/erase', to: "posts#destroy"
 
   post '/signup', to: "users#create"
 

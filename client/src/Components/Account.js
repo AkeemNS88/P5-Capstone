@@ -10,7 +10,7 @@ function Account({ currentUser, setCurrentUser }) {
         username: "",
         email: "",
     });
-    
+    console.log(formData)
     // useEffect(() => {
     //     fetch ("/me")
     //         .then(res => res.json())
