@@ -13,8 +13,7 @@ function Requesting({ posts, setPosts }) {
         const renderTitles = posts.map((post =>
             <div>
                 <Card className="mb-3" style={{ color: "#000" }}>
-                    <h3>{post.title}</h3>
-                    <p>{post.content}</p>    
+                    <Nav.Link href={`/requesting/${post.id}`}>{post.title}</Nav.Link>
                 </Card>        
             </div>
             ))

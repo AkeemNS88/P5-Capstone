@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Card, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Card, Button, Form, Row, Col, Nav } from 'react-bootstrap';
 
 function Account({ currentUser, setCurrentUser }) {
 
@@ -19,10 +19,7 @@ function Account({ currentUser, setCurrentUser }) {
         
         
         const renderTitles = currentUser.posts.map((post =>
-            <div>
-                <h3>{post.title}</h3>
-                <p>{post.content}</p>           
-            </div>
+            <Nav.Link href={`/account/${post.id}`}>{post.title}</Nav.Link>
             ))
         
 
@@ -42,11 +39,12 @@ function Account({ currentUser, setCurrentUser }) {
             navigate("/")
         }
         
-    function handleSubmit() {
+    
+    function handleChangeUsername() {
         
         const userCreds = { ...formData };
         
-        fetch("/fetch", {
+        fetch("/update", {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -60,7 +58,6 @@ function Account({ currentUser, setCurrentUser }) {
                         setCurrentUser(user)
                         setFormData({
                             username: "",
-                            email:"",
                         });
                     });
                 } else {
@@ -71,6 +68,37 @@ function Account({ currentUser, setCurrentUser }) {
                 }
             });
     }
+
+    function handleChangeEmail() {
+        
+        const userCreds = { ...formData };
+        
+        fetch("/update", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userCreds),
+        })
+            .then((res) => {
+                if (res.ok) {
+                    res.json()
+                    .then((user) => {
+                        setCurrentUser(user)
+                        setFormData({
+                            email: "",
+                        });
+                    });
+                } else {
+                    res.json()
+                    .then((errors) => {
+                        console.error(errors);
+                    });
+                }
+            });
+    }
+    
+    
 
         return (
             <Container>
@@ -86,7 +114,7 @@ function Account({ currentUser, setCurrentUser }) {
                                     <h3>Email: {currentUser.email}</h3>
                                 </div>
                             </Card.Title>
-                                <Form onSubmit={handleSubmit}>
+                                <Form onSubmit={handleChangeUsername}>
                                 <Row>
                                 <Col md>
                                     <Form.Group>
@@ -100,13 +128,14 @@ function Account({ currentUser, setCurrentUser }) {
                                             />
                                     </Form.Group>
                                     <Button
-                                        onClick={handleSubmit}
                                         type="submit"
                                         className="mt-2"
                                         variant="success"
                                     >Edit</Button>
                                 </Col>
                                 </Row>
+                                </Form>
+                                <Form onSubmit={handleChangeEmail}>
                                 <Row>
                                 <Col md>
                                     <Form.Group>
@@ -120,7 +149,6 @@ function Account({ currentUser, setCurrentUser }) {
                                             />
                                     </Form.Group>
                                 <Button
-                                    onClick={handleSubmit}
                                     type="submit"
                                     className="mt-2"
                                     variant="success"

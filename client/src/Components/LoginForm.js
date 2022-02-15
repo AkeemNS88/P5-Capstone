@@ -86,7 +86,7 @@ const LoginForm = ({setCurrentUser}) => {
         className="mt-2"
         variant="success"
       >
-        Submit
+        Login
       </Button>
     </Form>
     <Link to="/signup" replace>

@@ -14,8 +14,7 @@ function Buying({ posts, setPosts, currentUser, setCurrentUser, addNewPost }) {
         const renderTitles = posts.map((post =>
             <div>
                 <Card className="mb-3" style={{ color: "#000" }}>
-                    <h3>{post.title}</h3>
-                    <p>{post.content}</p>    
+                    <Nav.Link href={`/buying/${post.id}`}>{post.title}</Nav.Link>
                 </Card>        
             </div>
             ))
