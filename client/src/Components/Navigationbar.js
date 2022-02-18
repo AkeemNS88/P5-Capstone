@@ -15,9 +15,9 @@ function Navigationbar({ setCurrentUser }) {
     }
     return (
         <div>
-            <Navbar bg="dark" variant={"dark"} expand="lg">
+            <Navbar>
                 <Container>
-                    <Navbar.Brand href="/">The Goods</Navbar.Brand>
+                    <Navbar.Brand><img src="/the_goods.png"/></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav className="me-auto">

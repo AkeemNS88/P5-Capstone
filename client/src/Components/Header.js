@@ -2,7 +2,9 @@ import React from 'react';
 
 function Header() {
     return (
-        <h1 id="app-header">The Goods</h1>
+        <div class="headerdiv">
+            <img id="app-header" src="/welcome.gif"/>
+        </div>
     )
 }
 

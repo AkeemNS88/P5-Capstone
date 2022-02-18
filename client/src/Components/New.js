@@ -9,11 +9,6 @@ function New() {
         category_id: 0,
     });
 
-    useEffect(() => fetch(`/categories`)
-        .then(resp => resp.json())
-        .then(categoryData => {
-            console.log(categoryData)
-        }), [])
 
     let navigate = useNavigate();
 

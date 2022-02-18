@@ -36,3 +36,67 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar {
+  background: linear-gradient(to bottom, #000066 0%, #ff99cc 100%);
+  box-shadow: -.2em 1px rgb(109, 100, 58), -.5em 0 .5em #dddddd
+}
+
+.card {
+  background: black;
+  border: 5px double #ffff
+}
+
+.card-body h3 {
+  color: #ffff
+}
+
+.form-label {
+  color: rgb(158, 126, 86);
+  font-size: 2em;
+  text-shadow: 1px 1px 2px #324b64, 1px 1px 10px #000066;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card-body p {
+  color: yellowgreen
+}
+
+.h5, h5 {
+  color: rgb(24, 170, 170);
+  text-shadow:1px 1px 2px rgb(255, 255, 255), 1px 1px 2px rgb(204, 204, 204);
+  font-family:'Courier New', Courier, monospace;
+  font-size: 2.5em
+}
+
+.headerdiv {
+  text-align: center;
+  background:black
+}
+
+.welcome-banner {
+  background: black;
+  text-align: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-bottom: 0 !important;
+  font-size: 3em;
+  color:rgb(204, 204, 204);
+  font-style: italic;
+}
+
+.btn:hover {
+  background-color: rgb(119, 0, 255);
+  border: 2px #ffff groove
+}
+
+.container h1 {
+  color: #d8bead;
+  text-shadow: 3px 3px 2px #2c3d13;
+  font-family:'Times New Roman', Times, serif
+}
+/* 
+.nav-link {
+  font-size: 1.5em;
+  color: black
+} */
+

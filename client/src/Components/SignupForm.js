@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Home from './Home'
 
-const SignupForm = () => {
+const SignupForm = ({ setCurrentUser }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -24,7 +25,7 @@ const SignupForm = () => {
 
     const userCreds = { ...formData };
 
-    fetch("/users", {
+    fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,6 +35,7 @@ const SignupForm = () => {
       .then((r) => r.json())
       .then((user) => {
         console.log(user);
+        setCurrentUser(user)
         setFormData({
           username: "",
           password: "",
@@ -96,7 +98,6 @@ const SignupForm = () => {
         </Col>
       </Row>
       <Button
-        onClick={handleSubmit}
         type="submit"
         className="mt-2"
         variant="success"
@@ -104,7 +105,7 @@ const SignupForm = () => {
         Submit
       </Button>
     </Form>
-      <Link to="/" replace>
+      <Link to="/home" replace>
         Have an account already? Log in!
       </Link>
     </Container>

@@ -24,7 +24,7 @@ function Offering({ posts, setPosts }) {
             <h1>Service Offers</h1>
             <Card className="mb-3" style={{ color: "#000" }}>
                 <Card.Body>
-                    <Card.Title>{renderTitles}</Card.Title>
+                    <Card.Title>{renderTitles.reverse()}</Card.Title>
                     </Card.Body>
             </Card>            
         </Container>

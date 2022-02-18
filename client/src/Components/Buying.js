@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Nav, Button } from 'react-bootstrap';
 
-function Buying({ posts, setPosts, currentUser, setCurrentUser, addNewPost }) {
+function Buying({ posts, setPosts }) {
     
     useEffect(() => fetch(`/categories/1`)
         .then(resp => resp.json())
@@ -25,7 +25,7 @@ function Buying({ posts, setPosts, currentUser, setCurrentUser, addNewPost }) {
                     <h1>Buying Requests</h1>
                         <Card className="mb-3" style={{ color: "#000" }}>
                             <Card.Body>
-                                <Card.Title>{renderTitles}</Card.Title>
+                                <Card.Title>{renderTitles.reverse()}</Card.Title>
                             </Card.Body>
                         </Card>            
                 </Container>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :find_post, only: [:show, :update, :destroy]
     before_action :is_authorized, only: [:update, :destroy]
+    
     def index
         render json: Post.all
     end
@@ -10,7 +11,6 @@ class PostsController < ApplicationController
     end
 
     def create
-        # post = Post.create!(post_params)
         post = current_user.posts.build(post_params)
         post.save!
         render json: post, status: :created

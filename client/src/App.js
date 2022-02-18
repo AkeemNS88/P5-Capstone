@@ -5,6 +5,7 @@ import { BrowserRouter as Router} from 'react-router-dom';
 import Header from './Components/Header';
 import LoggedIn from './Components/LoggedIn';
 import LoggedOut from './Components/LoggedOut';
+import './App.css';
 
 
 

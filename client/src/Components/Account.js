@@ -3,26 +3,31 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Card, Button, Form, Row, Col, Nav } from 'react-bootstrap';
 
-function Account({ currentUser, setCurrentUser }) {
+function Account({ currentUser, setCurrentUser, allPosts }) {
 
-    // const [userData, setUserData] = useState({});
+    
     const [formData, setFormData] = useState({
         username: "",
         email: "",
+        avatar: "",
     });
-    console.log(formData)
-    // useEffect(() => {
-    //     fetch ("/me")
-    //         .then(res => res.json())
-    //         .then(data => setUserData(data))
-    //     }, [])
-        
+    
+    
+    
         
         const renderTitles = currentUser.posts.map((post =>
-            <Nav.Link href={`/account/${post.id}`}>{post.title}</Nav.Link>
-            ))
+                    <Nav.Link href={`/account/${post.id}`}>{post.title}</Nav.Link>
+                    ))
+
+        // const renderAllTitles = allPosts.map((post) => {
+        //         <Nav.Link href={`/account/${post.id}`}>{post.title}</Nav.Link>
+
+        
+        
         
 
+
+        // const admin = currentUser.admin
         function handleChange(e){
             setFormData({
                 ...formData,
@@ -110,17 +115,39 @@ function Account({ currentUser, setCurrentUser }) {
                         <Card.Body>
                             <Card.Title>
                                 <div>
+                                    <h3>Avatar: <img 
+                                    height="150px" 
+                                    width="150px" 
+                                    className="avatar-photo"
+                                    src={currentUser.avatar}/></h3>
                                     <h3>Username: {currentUser.username}</h3>
                                     <h3>Email: {currentUser.email}</h3>
                                 </div>
                             </Card.Title>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Label htmlFor="avatar">Change Avatar:</Form.Label>
+                                        <Form.Control
+                                            id="avatar-input"
+                                            type="text"
+                                            name="avatar"
+                                            value={formData.avatar}
+                                            onChange={handleChange}
+                                            />
+                                        <Button
+                                        type="submit"
+                                        className="mt-2"
+                                        variant="success"
+                                    >Edit</Button>
+                                    </Form.Group>
+                                </Form>
                                 <Form onSubmit={handleChangeUsername}>
                                 <Row>
                                 <Col md>
                                     <Form.Group>
                                         <Form.Label htmlFor="username">Change Username:</Form.Label>
                                             <Form.Control
-                                                id="username-singup-input"
+                                                id="username-input"
                                                 type="text"
                                                 name="username"
                                                 value={formData.username}

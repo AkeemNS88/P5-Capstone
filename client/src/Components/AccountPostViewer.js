@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 function AccountPostViewer(){
     const [post, setPost] = useState({})
     const [displayPost, setDisplayPost] = useState({})
-    // const [editToggle, setEditToggle] = useState(false)
+    
     
     const {id} = useParams();
     
@@ -42,7 +42,7 @@ function AccountPostViewer(){
 
 
     function handlePostPatch(event) {
-        event.preventDefault()
+        
         const options = {
             method: "PATCH",
             headers: {
@@ -50,7 +50,7 @@ function AccountPostViewer(){
             },
             body: JSON.stringify({
                 title: formData.title,
-                body: formData.body
+                content: formData.content
             })
         }
         fetch(`/posts/${post.id}`, options)
